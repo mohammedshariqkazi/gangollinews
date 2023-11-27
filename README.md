@@ -37,7 +37,7 @@ Contributors
 [Shariq Kazi](https://twitter.com/shariqkazi)
 
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://www.mit.edu/~amini/LICENSE.md) file for details.
 
 
 Make sure to replace placeholders like `[shariq kazi]` with actual names. You can also customize and expand the README as needed for your project.
