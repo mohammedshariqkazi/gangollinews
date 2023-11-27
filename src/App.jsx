@@ -1,8 +1,8 @@
 // App.jsx
 
 import React, { useState, useEffect } from 'react';
-import gangolliNewsLogo from './assets/gangollinews.png';
-import placeholderImage from './assets/placeholder.webp';
+import gangolliNewsLogo from '/assets/gangollinews.png';
+import placeholderImage from '/assets/placeholder.webp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import FullPost from './components/FullPost'; // Import the FullPost component

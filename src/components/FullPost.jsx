@@ -31,7 +31,7 @@ const FullPost = ({ postId, onClose }) => {
           <span className="close-button" onClick={onClose}>&times;</span>
           <a href="/">
             <center><img
-              src={'/src/assets/gangollinews.png'} // Update the path to your logo
+              src={'/assets/gangollinews.png'} // Update the path to your logo
               alt="Gangolli News logo"
               className="logo"
             /></center>
@@ -39,7 +39,7 @@ const FullPost = ({ postId, onClose }) => {
           <hr></hr>
           <h2>{post.title.rendered}</h2>
           <img
-            src={post._embedded['wp:featuredmedia'][0]?.media_details.sizes.medium.source_url || '/src/assets/placeholder.webp'}
+            src={post._embedded['wp:featuredmedia'][0]?.media_details.sizes.medium.source_url || '/assets/placeholder.webp'}
             alt="Featured"
             className="featured-image"
           />
