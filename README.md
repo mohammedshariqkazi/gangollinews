@@ -22,11 +22,13 @@ Gangolli News is a simple React application that fetches news posts from a WordP
    ```bash
    git clone https://github.com/mohammedshariqkazi/gangolli-news.git
 * Install dependencies:
+
   cd gangolli-news
   
   npm install
   
 * Run the application:
+  
   npm start
 
 * Open [http://localhost:5173/](http://localhost:5173/) in your browser to view the app.
