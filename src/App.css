@@ -8,7 +8,7 @@ body {
 
 .app-container {
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
 }
 
 /* Common header styles */
@@ -22,7 +22,7 @@ header {
   left: 0;
   right: 0;
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 10px 10px;
   z-index: 1200;
 }
 
@@ -238,7 +238,7 @@ h2 {
     display: block;
     position: relative;
     top: 0px;
-    right: 20px;
+    right: -10px;
     z-index: 1100;
     margin: 0px 0; /* Add margin to reduce gap above and below */
   }
@@ -253,6 +253,7 @@ h2 {
     margin: 0; /* Remove margin to reduce gap above and below */
     z-index: 1200;
   }
+
 
   .logo {
     width: 250px; /* Adjust logo width as needed */
