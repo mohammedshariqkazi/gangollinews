@@ -46,7 +46,7 @@ const FullPost = ({ postId, onClose }) => {
           <div className="post-content">
             <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
           </div>
-          <button className="back-button" onClick={onClose}>Back</button>
+          <center><button className="back-button" onClick={onClose}>Back</button></center>
         </>
       ) : (
         <p>Loading...</p>

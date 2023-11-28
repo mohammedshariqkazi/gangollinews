@@ -12,12 +12,26 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false); // Add state for menu
+
+  useEffect(() => {
+    fetch('https://gangolli.in/wp-json/wp/v2/categories?per_page=100')  // Adjust per_page as needed
+      .then(response => response.json())
+      .then(data => setCategories(data))
+      .catch(error => console.error('Error fetching categories:', error));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://gangolli.in/wp-json/wp/v2/posts?per_page=9&page=${currentPage}&_embed`);
+        const url = selectedCategory
+          ? `https://gangolli.in/wp-json/wp/v2/posts?categories=${selectedCategory.id}&per_page=9&page=${currentPage}&_embed`
+          : `https://gangolli.in/wp-json/wp/v2/posts?per_page=9&page=${currentPage}&_embed`;
+
+        const response = await fetch(url);
         const data = await response.json();
         setPosts([...posts, ...data]);
       } catch (error) {
@@ -28,7 +42,7 @@ function App() {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, selectedCategory]);
 
   const openFullPost = (postId) => {
     setSelectedPostId(postId);
@@ -42,6 +56,17 @@ function App() {
     setCurrentPage(currentPage + 1);
   };
 
+  const handleMenuClick = (category) => {
+    setSelectedCategory(category);
+    setPosts([]); // Clear existing posts
+    setCurrentPage(1); // Reset page to 1 to fetch new posts
+    setMenuOpen(false); // Close the menu when a menu item is clicked
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div className="app-container">
       <header>
@@ -50,6 +75,27 @@ function App() {
             <img src={gangolliNewsLogo} className="logo" alt="Gangolli News logo" />
           </a>
         </div>
+        <div className={`menu-icon ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+  {menuOpen ? (
+    <span class="close"></span>
+  ) : (
+    <>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+    </>
+  )}
+</div>
+        <nav className={`menu ${menuOpen ? 'open' : ''}`}>
+          <ul>
+            <li onClick={() => handleMenuClick(null)}>Home</li>
+            {categories.map((category) => (
+              <li key={category.id} onClick={() => handleMenuClick(category)}>
+                {category.name}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </header>
       <hr></hr>
       <section className="news-section">
@@ -83,9 +129,9 @@ function App() {
           </div>
         )}
       </section>
-      <p className="read-the-docs">
-        Click on the Gangolli News logo to learn more
-      </p>
+      <center><p className="read-the-docs">
+        Click Load More for more news
+      </p></center>
 
       {/* Display FullPost component when selectedPostId is not null */}
       {selectedPostId !== null && (
